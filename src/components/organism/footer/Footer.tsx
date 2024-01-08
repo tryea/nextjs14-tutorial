@@ -1,9 +1,7 @@
-interface FooterProps{
+interface FooterProps {}
 
+function Footer({}: FooterProps) {
+  return <div>Developed by Ersapta Aristo, 2024</div>;
 }
 
-function Footer({}:FooterProps){
-    return <div>Footer</div>
-}
-
-export default Footer
+export default Footer;
