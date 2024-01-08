@@ -1,38 +1,52 @@
-import Link from "next/link"
+"use client"
+
+import NavLink from "@/components/atoms/NavLink/NavLink";
+import { useState } from "react";
 
 interface NavLinksProps{
 
 }
 
+const links = [
+    {
+        title: "Homepage",
+        path: '/'
+    },
+    {
+        title: "About",
+        path: '/about'
+    },
+    {
+        title: "Contact",
+        path: '/contact'
+    },
+    {
+        title: "Blog",
+        path: '/blog'
+    },
+]
+
 function NavLinks({}:NavLinksProps){
-    const links = [
-        {
-            title: "Homepage",
-            path: '/'
-        },
-        {
-            title: "About",
-            path: '/about'
-        },
-        {
-            title: "Contact",
-            path: '/contact'
-        },
-        {
-            title: "Blog",
-            path: '/blog'
-        },
-    ]
+    const [open, setOpen] = useState(false)
+
+    const session = true
+    const isAdmin = true
 
     return (
         <>
         {
             links.map((link) => {
                 return (
-                    <Link href={link.path} key={link.title}>{link.title}</Link>
+                    <NavLink path={link.path} title={link.title} key={link.title} />
                 )
             })
         }
+         {session ? (
+            <>
+                {isAdmin && <NavLink path="/admin" title="Admin" />}
+                <button type="button" className="px-3 py-2 rounded-xl bg-red-500">Log Out</button>
+            </>
+            ): (<NavLink path="/login" title="Log In" />)}
         </>
     )
 }
